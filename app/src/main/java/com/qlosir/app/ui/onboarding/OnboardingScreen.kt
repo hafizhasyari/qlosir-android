@@ -330,14 +330,19 @@ private fun BarcodeScanIllustration() {
 
     // Vertical scan beam animation: 0f (top) to 1f (bottom)
     val scanFraction by infiniteTransition.animateFloat(
-        initialValue = 0.10f,
-        targetValue = 0.86f,
+        initialValue = 0f,
+        targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis = 1200, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "qscan_beam"
     )
+
+    val cardWidth = 150.dp
+    val cardHeight = 200.dp
+    val topMin = 16.dp
+    val topMax = 181.dp // cardHeight - 16.dp - 3.dp
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -346,7 +351,7 @@ private fun BarcodeScanIllustration() {
         // Floating Barcode White Card (150dp x 200dp)
         Box(
             modifier = Modifier
-                .size(width = 150.dp, height = 200.dp)
+                .size(width = cardWidth, height = cardHeight)
                 .shadow(
                     elevation = 16.dp,
                     shape = RoundedCornerShape(24.dp),
@@ -388,23 +393,23 @@ private fun BarcodeScanIllustration() {
                     color = DarkPrimaryText
                 )
             }
-        }
 
-        // Animated Yellow Laser Scan Line (#FFB020)
-        Box(
-            modifier = Modifier
-                .padding(horizontal = 82.dp)
-                .fillMaxWidth()
-                .align(Alignment.TopStart)
-                .padding(top = (26 + scanFraction * 200).dp)
-                .height(3.dp)
-                .shadow(
-                    elevation = 8.dp,
-                    shape = RoundedCornerShape(3.dp),
-                    spotColor = AccentCheckmarkAmber
-                )
-                .background(AccentCheckmarkAmber, RoundedCornerShape(3.dp))
-        )
+            // Animated Yellow Laser Scan Line (#FFB020) - Precisely fitted inside Barcode Card
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 14.dp)
+                    .align(Alignment.TopCenter)
+                    .padding(top = topMin + (topMax - topMin) * scanFraction)
+                    .height(3.dp)
+                    .shadow(
+                        elevation = 8.dp,
+                        shape = RoundedCornerShape(3.dp),
+                        spotColor = AccentCheckmarkAmber
+                    )
+                    .background(AccentCheckmarkAmber, RoundedCornerShape(3.dp))
+            )
+        }
 
         // Success Checkmark Badge (46dp circle #16A34A at bottom right)
         Box(
