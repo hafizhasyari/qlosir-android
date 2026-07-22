@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -111,8 +112,9 @@ fun OnboardingScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
+            .systemBarsPadding()
             .padding(horizontal = 28.dp)
-            .padding(top = 16.dp, bottom = 30.dp)
+            .padding(top = 16.dp, bottom = 16.dp)
     ) {
         // Top Skip Header (visible on pages 0 and 1)
         Box(

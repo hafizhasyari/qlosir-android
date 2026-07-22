@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
@@ -143,7 +144,8 @@ fun SplashScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 46.dp)
+                .navigationBarsPadding()
+                .padding(bottom = 24.dp)
         ) {
             // Pulsing Loading Dots (qpulse: 1.3s ease-in-out infinite, staggered delays 0s, 0.2s, 0.4s)
             PulsingLoadingDots()
