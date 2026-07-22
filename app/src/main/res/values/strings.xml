@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Qlosir</string>
+    <string name="splash_tagline">Kasir &amp; manajemen stok untuk warung</string>
+    <string name="splash_offline">Bekerja tanpa internet</string>
+    <string name="splash_content_description_logo">Logo Qlosir</string>
+    <string name="splash_content_description_offline">Indikator Mode Offline</string>
+</resources>

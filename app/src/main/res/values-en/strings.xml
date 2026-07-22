@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Qlosir</string>
+    <string name="splash_tagline">POS &amp; stock management for your store</string>
+    <string name="splash_offline">Works offline</string>
+    <string name="splash_content_description_logo">Qlosir Logo</string>
+    <string name="splash_content_description_offline">Offline Mode Indicator</string>
+</resources>
