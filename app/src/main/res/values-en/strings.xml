@@ -4,4 +4,27 @@
     <string name="splash_offline">Works offline</string>
     <string name="splash_content_description_logo">Qlosir Logo</string>
     <string name="splash_content_description_offline">Offline Mode Indicator</string>
+
+    <!-- Onboarding Navigation & Actions -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_start">Get Started</string>
+    <string name="onboarding_have_account">Already have an account?</string>
+    <string name="onboarding_login">Log in</string>
+
+    <!-- Onboarding Page 1 -->
+    <string name="onboarding_1_title">Fast checkout with barcode scan</string>
+    <string name="onboarding_1_desc">Scan barcodes straight from your phone camera and the cart fills automatically. Checkout in seconds.</string>
+
+    <!-- Onboarding Page 2 -->
+    <string name="onboarding_2_title">Control stock &amp; track debts</string>
+    <string name="onboarding_2_desc">Get alerts when stock runs low and record customer debts with a full repayment history.</string>
+    <string name="onboarding_low_stock_badge">Low stock</string>
+    <string name="onboarding_kasbon_sample_title">Debt · Budi</string>
+
+    <!-- Onboarding Page 3 -->
+    <string name="onboarding_3_title">Daily profit &amp; loss reports</string>
+    <string name="onboarding_3_desc">See revenue, estimated profit, and best sellers anytime — all stored right on your phone.</string>
+    <string name="onboarding_revenue_sample_title">Revenue · July</string>
+    <string name="onboarding_revenue_sample_amount">Rp 8.4m</string>
 </resources>

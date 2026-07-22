@@ -46,14 +46,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.qlosir.app.R
 import com.qlosir.app.ui.components.QlosirLogo
+import com.qlosir.app.ui.theme.PlusJakartaSansFontFamily
 import com.qlosir.app.ui.theme.SplashGradientEnd
 import com.qlosir.app.ui.theme.SplashGradientMiddle
 import com.qlosir.app.ui.theme.SplashGradientStart
 import kotlinx.coroutines.flow.collectLatest
 
 /**
- * Qlosir Splash Screen Composable
- * Recreates the exact design specs from `Qlosir Onboarding.dc.html`
+ * Qlosir Splash Screen Composable with Plus Jakarta Sans typography.
  */
 @Composable
 fun SplashScreen(
@@ -115,6 +115,7 @@ fun SplashScreen(
             // App Title "Qlosir"
             Text(
                 text = stringResource(id = R.string.app_name),
+                fontFamily = PlusJakartaSansFontFamily,
                 color = Color.White,
                 fontSize = 44.sp,
                 fontWeight = FontWeight.ExtraBold,
@@ -126,6 +127,7 @@ fun SplashScreen(
             // Tagline "Kasir & manajemen stok untuk warung" / "POS & stock management for your store"
             Text(
                 text = stringResource(id = R.string.splash_tagline),
+                fontFamily = PlusJakartaSansFontFamily,
                 color = Color.White.copy(alpha = 0.86f),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
@@ -242,6 +244,7 @@ private fun OfflineBadge() {
 
         Text(
             text = stringResource(id = R.string.splash_offline),
+            fontFamily = PlusJakartaSansFontFamily,
             color = Color.White,
             fontSize = 12.5.sp,
             fontWeight = FontWeight.SemiBold

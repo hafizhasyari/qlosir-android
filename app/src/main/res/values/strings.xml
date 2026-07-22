@@ -4,4 +4,27 @@
     <string name="splash_offline">Bekerja tanpa internet</string>
     <string name="splash_content_description_logo">Logo Qlosir</string>
     <string name="splash_content_description_offline">Indikator Mode Offline</string>
+
+    <!-- Onboarding Navigation & Actions -->
+    <string name="onboarding_skip">Lewati</string>
+    <string name="onboarding_next">Lanjut</string>
+    <string name="onboarding_start">Mulai Sekarang</string>
+    <string name="onboarding_have_account">Sudah punya akun?</string>
+    <string name="onboarding_login">Masuk</string>
+
+    <!-- Onboarding Page 1 -->
+    <string name="onboarding_1_title">Kasir cepat dengan scan barcode</string>
+    <string name="onboarding_1_desc">Pindai barcode langsung dari kamera HP dan keranjang terisi otomatis. Transaksi selesai dalam hitungan detik.</string>
+
+    <!-- Onboarding Page 2 -->
+    <string name="onboarding_2_title">Kontrol stok &amp; catat kasbon</string>
+    <string name="onboarding_2_desc">Dapat peringatan saat stok menipis dan catat utang pelanggan lengkap dengan riwayat pelunasannya.</string>
+    <string name="onboarding_low_stock_badge">Stok menipis</string>
+    <string name="onboarding_kasbon_sample_title">Kasbon · Budi</string>
+
+    <!-- Onboarding Page 3 -->
+    <string name="onboarding_3_title">Laporan laba rugi harian</string>
+    <string name="onboarding_3_desc">Lihat omset, estimasi laba, dan barang terlaris kapan saja — semua tersimpan di HP-mu.</string>
+    <string name="onboarding_revenue_sample_title">Omset · Juli</string>
+    <string name="onboarding_revenue_sample_amount">Rp 8,4jt</string>
 </resources>

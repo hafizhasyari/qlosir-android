@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.qlosir.app.ui.onboarding.OnboardingNavigationEvent
+import com.qlosir.app.ui.onboarding.OnboardingScreen
 import com.qlosir.app.ui.splash.SplashNavigationEvent
 import com.qlosir.app.ui.splash.SplashScreen
 
@@ -48,7 +50,22 @@ fun QlosirNavGraph(
         }
 
         composable(Screen.Onboarding.route) {
-            // Placeholder for Onboarding flow screens (Onboarding 1, 2, 3)
+            OnboardingScreen(
+                onNavigate = { event ->
+                    when (event) {
+                        is OnboardingNavigationEvent.NavigateToLogin -> {
+                            navController.navigate(Screen.Login.route) {
+                                popUpTo(Screen.Onboarding.route) { inclusive = true }
+                            }
+                        }
+                        is OnboardingNavigationEvent.NavigateToDashboard -> {
+                            navController.navigate(Screen.Dashboard.route) {
+                                popUpTo(Screen.Onboarding.route) { inclusive = true }
+                            }
+                        }
+                    }
+                }
+            )
         }
 
         composable(Screen.Login.route) {
