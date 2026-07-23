@@ -50,4 +50,18 @@
     <string name="register_error_phone_required">Phone number is required</string>
     <string name="register_error_email_invalid">Invalid email format</string>
     <string name="register_error_password_length">Password must be at least 8 characters</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Log in to Your Store</string>
+    <string name="login_subtitle">Enter your phone number and password to continue</string>
+    <string name="login_field_phone">Phone Number</string>
+    <string name="login_placeholder_phone">0812 3456 7890</string>
+    <string name="login_field_password">Password</string>
+    <string name="login_placeholder_password">Enter password</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_button">Log in</string>
+    <string name="login_no_account">Don\'t have an account?</string>
+    <string name="login_register">Register</string>
+    <string name="login_error_phone_required">Phone number is required</string>
+    <string name="login_error_password_required">Password is required</string>
 </resources>
