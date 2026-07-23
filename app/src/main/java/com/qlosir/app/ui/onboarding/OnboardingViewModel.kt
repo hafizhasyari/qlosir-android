@@ -11,17 +11,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-data class OnboardingUiState(
-    val currentPage: Int = 0,
-    val totalPages: Int = 3
-)
-
-sealed class OnboardingNavigationEvent {
-    data object NavigateToLogin : OnboardingNavigationEvent()
-    data object NavigateToRegister : OnboardingNavigationEvent()
-    data object NavigateToDashboard : OnboardingNavigationEvent()
-}
-
 class OnboardingViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(OnboardingUiState())

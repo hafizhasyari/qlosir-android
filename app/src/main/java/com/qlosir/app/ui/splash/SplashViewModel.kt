@@ -8,12 +8,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-sealed interface SplashNavigationEvent {
-    data object NavigateToOnboarding : SplashNavigationEvent
-    data object NavigateToLogin : SplashNavigationEvent
-    data object NavigateToDashboard : SplashNavigationEvent
-}
-
 class SplashViewModel : ViewModel() {
 
     private val _navigationEvent = MutableSharedFlow<SplashNavigationEvent>()

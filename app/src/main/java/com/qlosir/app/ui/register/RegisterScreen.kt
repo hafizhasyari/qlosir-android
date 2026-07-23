@@ -178,7 +178,7 @@ fun RegisterScreen(
                 )
 
                 // Form Fields
-                QlosirCustomFloatingField(
+                FloatingLabelTextField(
                     label = stringResource(R.string.register_field_store_name),
                     value = uiState.storeName,
                     onValueChange = viewModel::onStoreNameChanged,
@@ -189,7 +189,7 @@ fun RegisterScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                QlosirCustomFloatingField(
+                FloatingLabelTextField(
                     label = stringResource(R.string.register_field_owner_name),
                     value = uiState.ownerName,
                     onValueChange = viewModel::onOwnerNameChanged,
@@ -200,7 +200,7 @@ fun RegisterScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                QlosirCustomFloatingField(
+                FloatingLabelTextField(
                     label = stringResource(R.string.register_field_phone),
                     value = uiState.phone,
                     onValueChange = viewModel::onPhoneChanged,
@@ -214,7 +214,7 @@ fun RegisterScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                QlosirCustomFloatingField(
+                FloatingLabelTextField(
                     label = stringResource(R.string.register_field_email),
                     value = uiState.email,
                     onValueChange = viewModel::onEmailChanged,
@@ -228,7 +228,7 @@ fun RegisterScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                QlosirCustomFloatingField(
+                FloatingLabelTextField(
                     label = stringResource(R.string.register_field_password),
                     value = uiState.password,
                     onValueChange = viewModel::onPasswordChanged,
@@ -295,7 +295,7 @@ fun RegisterScreen(
  * Custom Input Field styled to match Qlosir floating-label design tokens & design typing indicator.
  */
 @Composable
-private fun QlosirCustomFloatingField(
+private fun FloatingLabelTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,

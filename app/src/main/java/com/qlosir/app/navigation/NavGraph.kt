@@ -30,7 +30,7 @@ fun QlosirNavGraph(
     ) {
         composable(Screen.Splash.route) {
             SplashScreen(
-                onNavigateNext = { event ->
+                onNavigate = { event ->
                     when (event) {
                         is SplashNavigationEvent.NavigateToOnboarding -> {
                             navController.navigate(Screen.Onboarding.route) {

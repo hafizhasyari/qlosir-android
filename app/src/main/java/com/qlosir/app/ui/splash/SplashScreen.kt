@@ -58,12 +58,12 @@ import kotlinx.coroutines.flow.collectLatest
  */
 @Composable
 fun SplashScreen(
-    onNavigateNext: (SplashNavigationEvent) -> Unit,
+    onNavigate: (SplashNavigationEvent) -> Unit,
     viewModel: SplashViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.navigationEvent.collectLatest { event ->
-            onNavigateNext(event)
+            onNavigate(event)
         }
     }
 
