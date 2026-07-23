@@ -27,4 +27,27 @@
     <string name="onboarding_3_desc">Lihat omset, estimasi laba, dan barang terlaris kapan saja — semua tersimpan di HP-mu.</string>
     <string name="onboarding_revenue_sample_title">Omset · Juli</string>
     <string name="onboarding_revenue_sample_amount">Rp 8,4jt</string>
+
+    <!-- Registration Screen -->
+    <string name="register_title">Daftar Warung</string>
+    <string name="register_subtitle">Buat akun untuk mulai mengelola warungmu.</string>
+    <string name="register_field_store_name">Nama Warung</string>
+    <string name="register_placeholder_store_name">Warung Berkah Jaya</string>
+    <string name="register_field_owner_name">Nama Pemilik</string>
+    <string name="register_placeholder_owner_name">Budi Santoso</string>
+    <string name="register_field_phone">Nomor HP</string>
+    <string name="register_placeholder_phone">0812 3456 7890</string>
+    <string name="register_field_email">Email</string>
+    <string name="register_placeholder_email">nama@email.com</string>
+    <string name="register_field_password">Password</string>
+    <string name="register_placeholder_password">Minimal 8 karakter</string>
+    <string name="register_terms">Dengan mendaftar, kamu menyetujui Syarat &amp; Ketentuan dan Kebijakan Privasi Qlosir.</string>
+    <string name="register_button_continue">Lanjut</string>
+    <string name="register_back_button">Kembali</string>
+    <string name="register_toggle_password_visibility">Toggle visibilitas password</string>
+    <string name="register_error_store_required">Nama warung wajib diisi</string>
+    <string name="register_error_owner_required">Nama pemilik wajib diisi</string>
+    <string name="register_error_phone_required">Nomor HP wajib diisi</string>
+    <string name="register_error_email_invalid">Format email tidak valid</string>
+    <string name="register_error_password_length">Password minimal 8 karakter</string>
 </resources>

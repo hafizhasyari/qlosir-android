@@ -27,4 +27,27 @@
     <string name="onboarding_3_desc">See revenue, estimated profit, and best sellers anytime — all stored right on your phone.</string>
     <string name="onboarding_revenue_sample_title">Revenue · July</string>
     <string name="onboarding_revenue_sample_amount">Rp 8.4m</string>
+
+    <!-- Registration Screen -->
+    <string name="register_title">Register Store</string>
+    <string name="register_subtitle">Create an account to start managing your store.</string>
+    <string name="register_field_store_name">Store Name</string>
+    <string name="register_placeholder_store_name">Berkah Jaya Store</string>
+    <string name="register_field_owner_name">Owner Name</string>
+    <string name="register_placeholder_owner_name">Budi Santoso</string>
+    <string name="register_field_phone">Phone Number</string>
+    <string name="register_placeholder_phone">0812 3456 7890</string>
+    <string name="register_field_email">Email</string>
+    <string name="register_placeholder_email">name@email.com</string>
+    <string name="register_field_password">Password</string>
+    <string name="register_placeholder_password">At least 8 characters</string>
+    <string name="register_terms">By signing up, you agree to Qlosir\'s Terms of Service and Privacy Policy.</string>
+    <string name="register_button_continue">Continue</string>
+    <string name="register_back_button">Back</string>
+    <string name="register_toggle_password_visibility">Toggle password visibility</string>
+    <string name="register_error_store_required">Store name is required</string>
+    <string name="register_error_owner_required">Owner name is required</string>
+    <string name="register_error_phone_required">Phone number is required</string>
+    <string name="register_error_email_invalid">Invalid email format</string>
+    <string name="register_error_password_length">Password must be at least 8 characters</string>
 </resources>

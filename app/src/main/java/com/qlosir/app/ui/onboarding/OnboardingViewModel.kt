@@ -18,6 +18,7 @@ data class OnboardingUiState(
 
 sealed class OnboardingNavigationEvent {
     data object NavigateToLogin : OnboardingNavigationEvent()
+    data object NavigateToRegister : OnboardingNavigationEvent()
     data object NavigateToDashboard : OnboardingNavigationEvent()
 }
 
@@ -56,7 +57,7 @@ class OnboardingViewModel : ViewModel() {
 
     fun onFinishOnboarding() {
         viewModelScope.launch {
-            _navigationEvent.emit(OnboardingNavigationEvent.NavigateToLogin)
+            _navigationEvent.emit(OnboardingNavigationEvent.NavigateToRegister)
         }
     }
 }
