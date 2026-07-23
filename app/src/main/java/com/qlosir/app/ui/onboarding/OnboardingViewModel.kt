@@ -1,7 +1,9 @@
 package com.qlosir.app.ui.onboarding
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.qlosir.app.data.OnboardingPreferences
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -11,7 +13,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class OnboardingViewModel : ViewModel() {
+class OnboardingViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val onboardingPreferences = OnboardingPreferences(application)
 
     private val _uiState = MutableStateFlow(OnboardingUiState())
     val uiState: StateFlow<OnboardingUiState> = _uiState.asStateFlow()
@@ -34,19 +38,22 @@ class OnboardingViewModel : ViewModel() {
 
     fun onSkipClicked() {
         viewModelScope.launch {
+            onboardingPreferences.setOnboardingCompleted()
             _navigationEvent.emit(OnboardingNavigationEvent.NavigateToLogin)
         }
     }
 
     fun onLoginClicked() {
         viewModelScope.launch {
+            onboardingPreferences.setOnboardingCompleted()
             _navigationEvent.emit(OnboardingNavigationEvent.NavigateToLogin)
         }
     }
 
     fun onFinishOnboarding() {
         viewModelScope.launch {
-            _navigationEvent.emit(OnboardingNavigationEvent.NavigateToRegister)
+            onboardingPreferences.setOnboardingCompleted()
+            _navigationEvent.emit(OnboardingNavigationEvent.NavigateToLogin)
         }
     }
 }

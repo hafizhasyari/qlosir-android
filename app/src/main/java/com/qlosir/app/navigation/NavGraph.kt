@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.qlosir.app.ui.login.LoginNavigationEvent
+import com.qlosir.app.ui.login.LoginScreen
 import com.qlosir.app.ui.onboarding.OnboardingNavigationEvent
 import com.qlosir.app.ui.onboarding.OnboardingScreen
 import com.qlosir.app.ui.register.RegisterNavigationEvent
@@ -62,13 +64,33 @@ fun QlosirNavGraph(
                             }
                         }
                         is OnboardingNavigationEvent.NavigateToRegister -> {
-                            navController.navigate(Screen.Register.route) {
+                            navController.navigate(Screen.Login.route) {
                                 popUpTo(Screen.Onboarding.route) { inclusive = true }
                             }
                         }
                         is OnboardingNavigationEvent.NavigateToDashboard -> {
                             navController.navigate(Screen.Dashboard.route) {
                                 popUpTo(Screen.Onboarding.route) { inclusive = true }
+                            }
+                        }
+                    }
+                }
+            )
+        }
+
+        composable(Screen.Login.route) {
+            LoginScreen(
+                onNavigate = { event ->
+                    when (event) {
+                        is LoginNavigationEvent.NavigateToRegister -> {
+                            navController.navigate(Screen.Register.route)
+                        }
+                        is LoginNavigationEvent.NavigateToForgotPassword -> {
+                            // TODO: Navigate to Forgot Password screen
+                        }
+                        is LoginNavigationEvent.NavigateToDashboard -> {
+                            navController.navigate(Screen.Dashboard.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
                             }
                         }
                     }
@@ -90,16 +112,12 @@ fun QlosirNavGraph(
                         }
                         is RegisterNavigationEvent.NavigateToDashboard -> {
                             navController.navigate(Screen.Dashboard.route) {
-                                popUpTo(Screen.Register.route) { inclusive = true }
+                                popUpTo(Screen.Login.route) { inclusive = true }
                             }
                         }
                     }
                 }
             )
-        }
-
-        composable(Screen.Login.route) {
-            // Placeholder for Login screen
         }
 
         composable(Screen.Dashboard.route) {
