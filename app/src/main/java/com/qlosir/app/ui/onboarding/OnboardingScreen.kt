@@ -113,12 +113,12 @@ fun OnboardingScreen(
             .fillMaxSize()
             .background(Color.White)
             .systemBarsPadding()
-            .padding(horizontal = 28.dp)
             .padding(top = 16.dp, bottom = 16.dp)
     ) {
         // Top Skip Header (visible on pages 0 and 1)
         Box(
             modifier = Modifier
+                .padding(horizontal = 28.dp)
                 .fillMaxWidth()
                 .height(38.dp),
             contentAlignment = Alignment.CenterEnd
@@ -146,7 +146,9 @@ fun OnboardingScreen(
                 .fillMaxWidth()
         ) { page ->
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 28.dp)
             ) {
                 Spacer(modifier = Modifier.height(18.dp))
 
@@ -217,6 +219,7 @@ fun OnboardingScreen(
         // Primary Action Button ("Lanjut" / "Mulai Sekarang")
         Box(
             modifier = Modifier
+                .padding(horizontal = 28.dp)
                 .fillMaxWidth()
                 .shadow(
                     elevation = 10.dp,
@@ -274,6 +277,7 @@ fun OnboardingScreen(
                 color = TextSecondary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
+                    .padding(horizontal = 28.dp)
                     .fillMaxWidth()
                     .clickable { viewModel.onLoginClicked() }
             )
