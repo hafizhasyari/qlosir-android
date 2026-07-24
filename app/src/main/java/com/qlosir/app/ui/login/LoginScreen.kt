@@ -28,7 +28,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,7 +47,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.scale
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -71,6 +71,7 @@ import com.qlosir.app.ui.theme.BrandPrimaryBlue
 import com.qlosir.app.ui.theme.DarkPrimaryText
 import com.qlosir.app.ui.theme.PlusJakartaSansFontFamily
 import com.qlosir.app.ui.theme.QlosirTheme
+import com.qlosir.app.ui.theme.SubtitleText
 import com.qlosir.app.ui.theme.TextSecondary
 import kotlinx.coroutines.flow.collectLatest
 
@@ -103,7 +104,7 @@ fun LoginScreen(
     onNavigate: (LoginNavigationEvent) -> Unit,
     viewModel: LoginViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(key1 = true) {
         viewModel.navigationEvent.collectLatest { event ->
@@ -149,7 +150,7 @@ fun LoginScreen(
                         .semantics { contentDescription = "Logo Qlosir" },
                     contentAlignment = Alignment.Center
                 ) {
-                    QlosirLogoIcon(modifier = Modifier.size(40.dp))
+                    QlosirLogoIcon(modifier = Modifier.size(60.dp))
                 }
             }
 
@@ -286,7 +287,7 @@ fun LoginScreen(
                 fontFamily = PlusJakartaSansFontFamily,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = TextSecondary,
+                color = SubtitleText,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -303,57 +304,75 @@ fun LoginScreen(
 
 /**
  * Qlosir logo white icon drawn via Canvas (magnifying glass + checkmark).
+ * Matches SVG: filled donut (evenodd) + rotated capsule handle + checkmark stroke.
  */
 @Composable
 private fun QlosirLogoIcon(modifier: Modifier = Modifier) {
     Canvas(modifier = modifier) {
-        val s = size.width
-        val scale = s / 96f
+        val scaleVal = size.width / 96f
 
-        scale(scale, pivot = Offset.Zero) {
-            // Outer ring
-            drawCircle(
-                color = Color.White,
-                radius = 27f,
-                center = Offset(48f, 48f),
-                style = Stroke(width = 7f)
+        // Magnifying glass body — filled donut (outer r=27, inner cutout r=13)
+        // SVG uses fill-rule="evenodd" with two concentric circles to create donut
+        val glassPath = Path().apply {
+            addOval(
+                androidx.compose.ui.geometry.Rect(
+                    center = Offset(48f * scaleVal, 48f * scaleVal),
+                    radius = 27f * scaleVal
+                )
             )
-
-            // Inner hole (clear via white ring on top)
-            drawCircle(
-                color = Color.White,
-                radius = 13f,
-                center = Offset(48f, 48f),
-                style = Stroke(width = 5f)
-            )
-
-            // Search handle
-            val handlePath = Path().apply {
-                moveTo(64f, 64f)
-                lineTo(78f, 78f)
-            }
-            drawPath(
-                path = handlePath,
-                color = Color.White,
-                style = Stroke(width = 11f, cap = StrokeCap.Round)
-            )
-
-            // Checkmark
-            val checkPath = Path().apply {
-                moveTo(40.5f, 47.5f)
-                lineTo(46f, 53f)
-                lineTo(55.5f, 42f)
-            }
-            drawPath(
-                path = checkPath,
-                color = AccentAmber,
-                style = Stroke(
-                    width = 5.5f,
-                    cap = StrokeCap.Round,
-                    join = StrokeJoin.Round
+            addOval(
+                androidx.compose.ui.geometry.Rect(
+                    center = Offset(48f * scaleVal, 48f * scaleVal),
+                    radius = 13f * scaleVal
                 )
             )
         }
+        glassPath.fillType = androidx.compose.ui.graphics.PathFillType.EvenOdd
+        drawPath(
+            path = glassPath,
+            color = Color.White
+        )
+
+        // Search handle — rotated rounded rectangle (capsule)
+        // SVG: rect x=59 y=60 width=24 height=11 rx=5.5 rotate(43, 59, 60)
+        rotate(
+            degrees = 43f,
+            pivot = Offset(59f * scaleVal, 60f * scaleVal)
+        ) {
+            val handlePath = Path().apply {
+                addRoundRect(
+                    androidx.compose.ui.geometry.RoundRect(
+                        left = 59f * scaleVal,
+                        top = 60f * scaleVal,
+                        right = (59f + 24f) * scaleVal,
+                        bottom = (60f + 11f) * scaleVal,
+                        radiusX = 5.5f * scaleVal,
+                        radiusY = 5.5f * scaleVal
+                    )
+                )
+            }
+            drawPath(
+                path = handlePath,
+                color = Color.White
+            )
+        }
+
+        // Checkmark — amber stroke
+        // SVG: d="M40.5 47.5l5.5 5.5 9.5-11"
+        val checkPath = Path().apply {
+            moveTo(40.5f * scaleVal, 47.5f * scaleVal)
+            lineTo(46f * scaleVal, 53f * scaleVal)
+            lineTo(55.5f * scaleVal, 42f * scaleVal)
+        }
+        drawPath(
+            path = checkPath,
+            color = AccentAmber,
+            style = Stroke(
+                width = 5.5f * scaleVal,
+                cap = StrokeCap.Round,
+                join = StrokeJoin.Round
+            )
+        )
     }
 }
 
