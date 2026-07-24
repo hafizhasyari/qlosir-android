@@ -52,7 +52,7 @@
     <string name="register_error_password_length">Password minimal 8 karakter</string>
 
     <!-- Login Screen -->
-    <string name="login_title">Masuk ke Warungmu</string>
+    <string name="login_title">Masuk ke Qlosir</string>
     <string name="login_subtitle">Masukkan nomor HP dan password untuk melanjutkan</string>
     <string name="login_field_phone">Nomor HP</string>
     <string name="login_placeholder_phone">0812 3456 7890</string>
