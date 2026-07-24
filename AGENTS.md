@@ -76,7 +76,8 @@ app/src/main/java/com/qlosir/app/
 │   └── NavGraph.kt                     # NavHost + Screen sealed class routes
 └── ui/
     ├── components/
-    │   └── QlosirLogo.kt               # Reusable brand logo composable
+    │   ├── QlosirLogo.kt               # Reusable brand logo composable
+    │   └── WormPageIndicator.kt        # Animated worm page indicator (Canvas-based)
     ├── theme/
     │   ├── Color.kt                    # Color palette definitions
     │   ├── Theme.kt                    # QlosirTheme (Material 3 light scheme)
@@ -109,6 +110,8 @@ app/src/main/res/
 └── mipmap-*/                           # App icons (all densities)
 
 app/src/test/java/com/qlosir/app/ui/
+├── components/
+│   └── WormPageIndicatorTest.kt        # Worm indicator position calculation tests
 ├── onboarding/
 │   └── OnboardingViewModelTest.kt      # Onboarding UiState tests
 ├── splash/

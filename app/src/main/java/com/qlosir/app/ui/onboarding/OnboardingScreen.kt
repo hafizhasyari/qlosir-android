@@ -1,9 +1,7 @@
 package com.qlosir.app.ui.onboarding
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
@@ -58,6 +56,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.qlosir.app.R
+import com.qlosir.app.ui.components.WormPageIndicator
 import com.qlosir.app.ui.theme.AccentCheckmarkAmber
 import com.qlosir.app.ui.theme.BarChartBlueLight
 import com.qlosir.app.ui.theme.BarChartBlueLightAlt
@@ -67,7 +66,6 @@ import com.qlosir.app.ui.theme.BrandPrimaryBlue
 import com.qlosir.app.ui.theme.DarkPrimaryText
 import com.qlosir.app.ui.theme.IllustrationBgEnd
 import com.qlosir.app.ui.theme.IllustrationBgStart
-import com.qlosir.app.ui.theme.InactiveDot
 import com.qlosir.app.ui.theme.LowStockBg
 import com.qlosir.app.ui.theme.LowStockBorder
 import com.qlosir.app.ui.theme.LowStockDot
@@ -178,8 +176,12 @@ fun OnboardingScreen(
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                // Page Indicator Dots
-                PageIndicator(currentPage = page, pageCount = 3)
+                // Worm Page Indicator (synced with scroll gesture)
+                WormPageIndicator(
+                    pageCount = 3,
+                    currentPage = pagerState.currentPage,
+                    pageOffsetFraction = pagerState.currentPageOffsetFraction
+                )
 
                 Spacer(modifier = Modifier.height(22.dp))
 
@@ -285,44 +287,6 @@ fun OnboardingScreen(
             )
         } else {
             Spacer(modifier = Modifier.height(34.dp))
-        }
-    }
-}
-
-/**
- * Animated Page Indicator component.
- * Active dot expands to a 26dp wide pill; inactive dots are 8dp circles.
- */
-@Composable
-private fun PageIndicator(
-    currentPage: Int,
-    pageCount: Int
-) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(7.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        repeat(pageCount) { index ->
-            val isSelected = index == currentPage
-
-            val dotWidth by animateDpAsState(
-                targetValue = if (isSelected) 26.dp else 8.dp,
-                animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing),
-                label = "indicator_width_$index"
-            )
-
-            val dotColor by animateColorAsState(
-                targetValue = if (isSelected) BrandPrimaryBlue else InactiveDot,
-                animationSpec = tween(durationMillis = 300),
-                label = "indicator_color_$index"
-            )
-
-            Box(
-                modifier = Modifier
-                    .size(width = dotWidth, height = 8.dp)
-                    .clip(CircleShape)
-                    .background(dotColor)
-            )
         }
     }
 }
