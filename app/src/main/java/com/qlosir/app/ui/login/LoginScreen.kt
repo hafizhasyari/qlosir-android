@@ -64,10 +64,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.qlosir.app.R
 import com.qlosir.app.ui.theme.BrandPrimaryBlue
 import com.qlosir.app.ui.theme.DarkPrimaryText
 import com.qlosir.app.ui.theme.PlusJakartaSansFontFamily
+import com.qlosir.app.ui.theme.QlosirTheme
 import com.qlosir.app.ui.theme.TextSecondary
 import kotlinx.coroutines.flow.collectLatest
 
@@ -586,5 +588,13 @@ private fun LoginPasswordEyeIcon(
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun LoginScreenPreview() {
+    QlosirTheme {
+        LoginScreen(onNavigate = {})
     }
 }
