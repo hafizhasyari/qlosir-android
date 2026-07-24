@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -398,7 +399,7 @@ private fun LoginFloatingLabelTextField(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 6.dp)
+                .padding(top = 8.dp)
         ) {
             // Field container
             Box(
@@ -462,23 +463,19 @@ private fun LoginFloatingLabelTextField(
                 }
             }
 
-            // Floating label
-            Box(
+            // Floating label — positioned at top:-8px to overlap the border
+            Text(
+                text = label,
+                fontFamily = PlusJakartaSansFontFamily,
+                fontWeight = if (isFocused) FontWeight.Bold else FontWeight.SemiBold,
+                fontSize = 12.sp,
+                color = currentLabelColor,
                 modifier = Modifier
-                    .padding(start = 12.dp)
                     .align(Alignment.TopStart)
-            ) {
-                Text(
-                    text = label,
-                    fontFamily = PlusJakartaSansFontFamily,
-                    fontWeight = if (isFocused) FontWeight.Bold else FontWeight.SemiBold,
-                    fontSize = 12.sp,
-                    color = currentLabelColor,
-                    modifier = Modifier
-                        .background(Color.White)
-                        .padding(horizontal = 6.dp)
-                )
-            }
+                    .offset(x = 12.dp, y = (-8).dp)
+                    .background(Color.White)
+                    .padding(horizontal = 6.dp)
+            )
         }
 
         if (errorMessage != null) {
