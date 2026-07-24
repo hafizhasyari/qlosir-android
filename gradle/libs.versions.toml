@@ -1,13 +1,13 @@
 [versions]
 agp = "9.3.0"
 kotlin = "2.4.10"
-coreKtx = "1.15.0"
+coreKtx = "1.19.0"
 lifecycleRuntimeKtx = "2.11.0"
-activityCompose = "1.10.0"
+activityCompose = "1.13.0"
 composeBom = "2026.06.00"
-navigationCompose = "2.8.7"
-coreSplashScreen = "1.0.1"
-datastorePreferences = "1.1.4"
+navigationCompose = "2.9.8"
+coreSplashScreen = "1.2.0"
+datastorePreferences = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
