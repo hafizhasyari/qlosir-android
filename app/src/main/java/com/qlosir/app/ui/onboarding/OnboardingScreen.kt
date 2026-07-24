@@ -56,6 +56,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.qlosir.app.R
 import com.qlosir.app.ui.theme.AccentCheckmarkAmber
 import com.qlosir.app.ui.theme.BarChartBlueLight
@@ -72,6 +73,7 @@ import com.qlosir.app.ui.theme.LowStockBorder
 import com.qlosir.app.ui.theme.LowStockDot
 import com.qlosir.app.ui.theme.LowStockText
 import com.qlosir.app.ui.theme.PlusJakartaSansFontFamily
+import com.qlosir.app.ui.theme.QlosirTheme
 import com.qlosir.app.ui.theme.SuccessGreen
 import com.qlosir.app.ui.theme.TextSecondary
 import kotlinx.coroutines.flow.collectLatest
@@ -634,5 +636,13 @@ private fun ReportChartIllustration() {
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun OnboardingScreenPreview() {
+    QlosirTheme {
+        OnboardingScreen(onNavigate = {})
     }
 }

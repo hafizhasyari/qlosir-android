@@ -45,9 +45,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.qlosir.app.R
 import com.qlosir.app.ui.components.QlosirLogo
 import com.qlosir.app.ui.theme.PlusJakartaSansFontFamily
+import com.qlosir.app.ui.theme.QlosirTheme
 import com.qlosir.app.ui.theme.SplashGradientEnd
 import com.qlosir.app.ui.theme.SplashGradientMiddle
 import com.qlosir.app.ui.theme.SplashGradientStart
@@ -251,5 +253,13 @@ private fun OfflineBadge() {
             fontSize = 12.5.sp,
             fontWeight = FontWeight.SemiBold
         )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun SplashScreenPreview() {
+    QlosirTheme {
+        SplashScreen(onNavigate = {})
     }
 }

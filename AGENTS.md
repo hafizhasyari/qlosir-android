@@ -144,6 +144,14 @@ fun <Feature>Screen(
 
     // UI content here, using uiState and viewModel actions
 }
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun <Feature>ScreenPreview() {
+    QlosirTheme {
+        <Feature>Screen(onNavigate = {})
+    }
+}
 ```
 
 ### NavigationEvent Template
@@ -373,6 +381,10 @@ feat: add store registration screen with form validation
 - Keep string resources in sync between `values/` and `values-en/`
 - Use `@StringRes Int?` for error messages in UiState (i18n-friendly)
 - Follow the per-screen 4-file pattern (Screen, ViewModel, UiState, NavigationEvent)
+- Add `@Preview` to every Screen composable for Android Studio preview rendering
+- Wrap preview composables in `QlosirTheme { }` for accurate theming
+- Use `showBackground = true, showSystemUi = true` in `@Preview` annotation
+- Make preview functions `private` with naming convention `<Feature>ScreenPreview()`
 - Write unit tests for ViewModel logic
 - Use English for all code, Indonesian for default user-facing strings
 
@@ -385,3 +397,5 @@ feat: add store registration screen with form validation
 - Don't navigate directly from ViewModel — emit events, let NavGraph handle routing
 - Don't use Indonesian for code identifiers, file names, or comments
 - Don't add new dependencies without updating `gradle/libs.versions.toml`
+- Don't create `@Preview` functions without wrapping in `QlosirTheme`
+- Don't add parameters to `@Preview` composable functions (they must be parameterless)

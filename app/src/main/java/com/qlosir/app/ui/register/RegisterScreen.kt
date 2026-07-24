@@ -64,10 +64,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.qlosir.app.R
 import com.qlosir.app.ui.theme.BrandPrimaryBlue
 import com.qlosir.app.ui.theme.DarkPrimaryText
 import com.qlosir.app.ui.theme.PlusJakartaSansFontFamily
+import com.qlosir.app.ui.theme.QlosirTheme
 import com.qlosir.app.ui.theme.TextSecondary
 import kotlinx.coroutines.flow.collectLatest
 
@@ -551,5 +553,13 @@ private fun AnimatedPasswordEyeIcon(
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun RegisterScreenPreview() {
+    QlosirTheme {
+        RegisterScreen(onNavigate = {})
     }
 }
