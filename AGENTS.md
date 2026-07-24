@@ -24,9 +24,9 @@
 | Target SDK | 37 |
 | UI Framework | Jetpack Compose (BOM 2026.06.00) |
 | Design System | Material 3 |
-| Navigation | Navigation Compose 2.8.7 |
+| Navigation | Navigation Compose 2.9.8 |
 | Lifecycle | 2.11.0 (ViewModel, Runtime KTX) |
-| Splash Screen | Core Splash Screen 1.0.1 |
+| Splash Screen | Core Splash Screen 1.2.0 |
 | Version Catalog | `gradle/libs.versions.toml` |
 
 ---
