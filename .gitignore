@@ -21,11 +21,17 @@ build/
 .gradle/
 build/
 
+# Kotlin compiler
+.kotlin/
+
 # Local configuration file (sdk path, etc)
 local.properties
 
 # Log Files
 *.log
+
+# Heap dumps
+*.hprof
 
 # Android Studio / IntelliJ IDEA
 .idea/
@@ -34,6 +40,13 @@ local.properties
 captures/
 .externalNativeBuild/
 .cxx/
+
+# Signing keys
+*.jks
+*.keystore
+
+# Firebase / Google Services (if added later)
+google-services.json
 
 # OS generated files
 .DS_Store

@@ -17,7 +17,7 @@
 |-----------|-----------------|
 | Language | Kotlin 2.4.10 |
 | Build System | Gradle 9.6.1 (Kotlin DSL) |
-| Android Gradle Plugin | 9.3.0 |
+| Android Gradle Plugin | 9.3.1 |
 | Java Target | 17 |
 | Compile SDK | 37 |
 | Min SDK | 24 (Android 7.0) |
