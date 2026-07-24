@@ -27,7 +27,16 @@
 | Navigation | Navigation Compose 2.9.8 |
 | Lifecycle | 2.11.0 (ViewModel, Runtime KTX) |
 | Splash Screen | Core Splash Screen 1.2.0 |
+| DataStore | Preferences 1.2.1 |
 | Version Catalog | `gradle/libs.versions.toml` |
+
+### Test Dependencies
+
+| Library | Version | Usage |
+|---------|---------|-------|
+| JUnit 4 | 4.13.2 | Unit test framework |
+| kotlinx-coroutines-test | 1.11.0 | Coroutine testing (TestDispatcher, runTest) |
+| MockK | 1.14.11 | Mocking framework for Kotlin |
 
 ---
 
@@ -51,7 +60,7 @@ Screen (Composable UI) → ViewModel (Business Logic) → UiState (Data) + Navig
 
 - **Library**: Jetpack Navigation Compose
 - **Route Definition**: `sealed class Screen(val route: String)` in `navigation/NavGraph.kt`
-- **Available Routes**: `Splash`, `Onboarding`, `Register`, `Login` (placeholder), `Dashboard` (placeholder)
+- **Available Routes**: `Splash`, `Onboarding`, `Register`, `Login`, `Dashboard` (placeholder)
 - **Pattern**: Each screen receives an `onNavigate: (NavigationEvent) -> Unit` callback; NavGraph handles actual navigation logic
 
 ---
@@ -61,6 +70,8 @@ Screen (Composable UI) → ViewModel (Business Logic) → UiState (Data) + Navig
 ```
 app/src/main/java/com/qlosir/app/
 ├── MainActivity.kt                     # Single Activity (entry point)
+├── data/
+│   └── OnboardingPreferences.kt        # DataStore for onboarding completion state
 ├── navigation/
 │   └── NavGraph.kt                     # NavHost + Screen sealed class routes
 └── ui/
@@ -72,18 +83,23 @@ app/src/main/java/com/qlosir/app/
     │   └── Type.kt                     # Typography (Plus Jakarta Sans)
     ├── splash/
     │   ├── SplashScreen.kt             # Splash UI composable
-    │   ├── SplashViewModel.kt          # Timer + navigation trigger
+    │   ├── SplashViewModel.kt          # Timer + onboarding check + navigation
     │   └── SplashNavigationEvent.kt    # Sealed interface for nav events
     ├── onboarding/
     │   ├── OnboardingScreen.kt         # 3-page onboarding carousel
     │   ├── OnboardingViewModel.kt      # Page state + actions
     │   ├── OnboardingUiState.kt        # Data class (currentPage, totalPages)
     │   └── OnboardingNavigationEvent.kt# Sealed interface for nav events
-    └── register/
-        ├── RegisterScreen.kt           # Store registration form UI
-        ├── RegisterViewModel.kt        # Form validation + submission
-        ├── RegisterUiState.kt          # Data class (fields + errors + loading)
-        └── RegisterNavigationEvent.kt  # Sealed interface for nav events
+    ├── register/
+    │   ├── RegisterScreen.kt           # Store registration form UI
+    │   ├── RegisterViewModel.kt        # Form validation + submission
+    │   ├── RegisterUiState.kt          # Data class (fields + errors + loading)
+    │   └── RegisterNavigationEvent.kt  # Sealed interface for nav events
+    └── login/
+        ├── LoginScreen.kt              # Login form UI
+        ├── LoginViewModel.kt           # Login validation + submission
+        ├── LoginUiState.kt             # Data class (fields + errors + loading)
+        └── LoginNavigationEvent.kt     # Sealed interface for nav events
 
 app/src/main/res/
 ├── values/strings.xml                  # Indonesian (default locale)
@@ -93,8 +109,14 @@ app/src/main/res/
 └── mipmap-*/                           # App icons (all densities)
 
 app/src/test/java/com/qlosir/app/ui/
-└── onboarding/
-    └── OnboardingViewModelTest.kt      # JUnit 4 ViewModel unit test
+├── onboarding/
+│   └── OnboardingViewModelTest.kt      # Onboarding UiState tests
+├── splash/
+│   └── SplashViewModelTest.kt          # Splash navigation logic tests (MockK)
+├── register/
+│   └── RegisterViewModelTest.kt        # Register form validation + navigation tests
+└── login/
+    └── LoginViewModelTest.kt           # Login validation + navigation tests
 ```
 
 ---
@@ -240,18 +262,29 @@ data class <Feature>UiState(
 
 ### Unit Tests
 
-- **Framework**: JUnit 4
+- **Framework**: JUnit 4 + kotlinx-coroutines-test + MockK
 - **Location**: `app/src/test/java/com/qlosir/app/ui/<feature>/`
 - **Naming**: `<Feature>ViewModelTest.kt`
-- **Pattern**: Test ViewModel public API (state changes, initial values, event emissions)
+- **Pattern**: Test ViewModel public API (state changes, initial values, event emissions, validation logic)
+
+### Test Template (with coroutines)
 
 ```kotlin
+@OptIn(ExperimentalCoroutinesApi::class)
 class <Feature>ViewModelTest {
+
     private lateinit var viewModel: <Feature>ViewModel
+    private val testDispatcher = UnconfinedTestDispatcher()
 
     @Before
     fun setUp() {
+        Dispatchers.setMain(testDispatcher)
         viewModel = <Feature>ViewModel()
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
@@ -260,8 +293,26 @@ class <Feature>ViewModelTest {
         viewModel.someAction()
         assertEquals(expected, viewModel.uiState.value.someField)
     }
+
+    @Test
+    fun `test navigation event emission`() = runTest {
+        val events = mutableListOf<<Feature>NavigationEvent>()
+        val job = launch(UnconfinedTestDispatcher(testScheduler)) {
+            viewModel.navigationEvent.collect { events.add(it) }
+        }
+
+        viewModel.someNavigationAction()
+
+        assertEquals(<Feature>NavigationEvent.NavigateToX, events.first())
+        job.cancel()
+    }
 }
 ```
+
+### Known Test Limitations
+
+- `android.util.Patterns.EMAIL_ADDRESS` is `null` in JVM unit tests — email validation tests that use this Android framework class require Robolectric or should be tested via instrumented tests
+- `AndroidViewModel` tests require MockK to mock `Application` context
 
 ### Build Verification
 
@@ -386,6 +437,7 @@ feat: add store registration screen with form validation
 - Use `showBackground = true, showSystemUi = true` in `@Preview` annotation
 - Make preview functions `private` with naming convention `<Feature>ScreenPreview()`
 - Write unit tests for ViewModel logic
+- Use `Dispatchers.setMain(testDispatcher)` in unit tests that test coroutine code
 - Use English for all code, Indonesian for default user-facing strings
 
 ### ❌ Don't
@@ -399,3 +451,4 @@ feat: add store registration screen with form validation
 - Don't add new dependencies without updating `gradle/libs.versions.toml`
 - Don't create `@Preview` functions without wrapping in `QlosirTheme`
 - Don't add parameters to `@Preview` composable functions (they must be parameterless)
+- Don't use `android.util.Patterns` directly in unit tests — it's null in JVM environment

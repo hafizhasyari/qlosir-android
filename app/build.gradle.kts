@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 
     debugImplementation(libs.androidx.ui.tooling)
 }

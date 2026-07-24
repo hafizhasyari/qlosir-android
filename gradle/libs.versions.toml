@@ -8,6 +8,8 @@ composeBom = "2026.06.00"
 navigationCompose = "2.9.8"
 coreSplashScreen = "1.2.0"
 datastorePreferences = "1.2.1"
+coroutinesTest = "1.11.0"
+mockk = "1.14.11"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -23,6 +25,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashScreen" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
+
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
