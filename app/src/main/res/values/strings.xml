@@ -64,4 +64,12 @@
     <string name="login_register">Daftar</string>
     <string name="login_error_phone_required">Nomor HP wajib diisi</string>
     <string name="login_error_password_required">Password wajib diisi</string>
+
+    <!-- Create PIN Screen -->
+    <string name="create_pin_title">Buat PIN Keamanan</string>
+    <string name="create_pin_subtitle">Masukkan 6-digit PIN untuk verifikasi setiap masuk aplikasi.</string>
+    <string name="create_pin_confirm_title">Konfirmasi PIN</string>
+    <string name="create_pin_confirm_subtitle">Masukkan ulang 6-digit PIN untuk mengonfirmasi.</string>
+    <string name="create_pin_error_mismatch">PIN tidak cocok. Silakan coba lagi.</string>
+    <string name="create_pin_back_button">Kembali</string>
 </resources>

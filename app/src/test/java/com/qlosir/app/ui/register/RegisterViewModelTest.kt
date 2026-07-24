@@ -128,7 +128,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `onSubmit with valid data sets isLoading true and emits NavigateToLogin`() = runTest {
+    fun `onSubmit with valid data sets isLoading true and emits NavigateToDashboard`() = runTest {
         // Given - email left empty to avoid android.util.Patterns dependency in JVM tests
         viewModel.onStoreNameChanged("Warung Jaya")
         viewModel.onOwnerNameChanged("Budi Setiawan")
@@ -146,7 +146,7 @@ class RegisterViewModelTest {
         // Then
         assertTrue(viewModel.uiState.value.isLoading)
         assertEquals(1, events.size)
-        assertEquals(RegisterNavigationEvent.NavigateToLogin, events.first())
+        assertEquals(RegisterNavigationEvent.NavigateToDashboard, events.first())
         job.cancel()
     }
 
@@ -166,7 +166,7 @@ class RegisterViewModelTest {
         viewModel.onSubmit()
 
         assertNull(viewModel.uiState.value.emailError)
-        assertEquals(RegisterNavigationEvent.NavigateToLogin, events.first())
+        assertEquals(RegisterNavigationEvent.NavigateToDashboard, events.first())
         job.cancel()
     }
 

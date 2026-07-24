@@ -9,6 +9,8 @@ import com.qlosir.app.ui.login.LoginNavigationEvent
 import com.qlosir.app.ui.login.LoginScreen
 import com.qlosir.app.ui.onboarding.OnboardingNavigationEvent
 import com.qlosir.app.ui.onboarding.OnboardingScreen
+import com.qlosir.app.ui.createpin.CreatePinNavigationEvent
+import com.qlosir.app.ui.createpin.CreatePinScreen
 import com.qlosir.app.ui.register.RegisterNavigationEvent
 import com.qlosir.app.ui.register.RegisterScreen
 import com.qlosir.app.ui.splash.SplashNavigationEvent
@@ -19,6 +21,7 @@ sealed class Screen(val route: String) {
     data object Onboarding : Screen("onboarding")
     data object Register : Screen("register")
     data object Login : Screen("login")
+    data object CreatePin : Screen("create_pin")
     data object Dashboard : Screen("dashboard")
 }
 
@@ -111,8 +114,25 @@ fun QlosirNavGraph(
                             }
                         }
                         is RegisterNavigationEvent.NavigateToDashboard -> {
-                            navController.navigate(Screen.Dashboard.route) {
+                            navController.navigate(Screen.CreatePin.route) {
                                 popUpTo(Screen.Login.route) { inclusive = true }
+                            }
+                        }
+                    }
+                }
+            )
+        }
+
+        composable(Screen.CreatePin.route) {
+            CreatePinScreen(
+                onNavigate = { event ->
+                    when (event) {
+                        is CreatePinNavigationEvent.NavigateBack -> {
+                            navController.popBackStack()
+                        }
+                        is CreatePinNavigationEvent.NavigateToDashboard -> {
+                            navController.navigate(Screen.Dashboard.route) {
+                                popUpTo(Screen.CreatePin.route) { inclusive = true }
                             }
                         }
                     }

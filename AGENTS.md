@@ -60,8 +60,9 @@ Screen (Composable UI) → ViewModel (Business Logic) → UiState (Data) + Navig
 
 - **Library**: Jetpack Navigation Compose
 - **Route Definition**: `sealed class Screen(val route: String)` in `navigation/NavGraph.kt`
-- **Available Routes**: `Splash`, `Onboarding`, `Register`, `Login`, `Dashboard` (placeholder)
+- **Available Routes**: `Splash`, `Onboarding`, `Register`, `Login`, `CreatePin`, `Dashboard` (placeholder)
 - **Pattern**: Each screen receives an `onNavigate: (NavigationEvent) -> Unit` callback; NavGraph handles actual navigation logic
+- **Flow**: Splash → Onboarding → Login ↔ Register → CreatePin → Dashboard
 
 ---
 
@@ -101,6 +102,11 @@ app/src/main/java/com/qlosir/app/
         ├── LoginViewModel.kt           # Login validation + submission
         ├── LoginUiState.kt             # Data class (fields + errors + loading)
         └── LoginNavigationEvent.kt     # Sealed interface for nav events
+    └── createpin/
+        ├── CreatePinScreen.kt          # PIN entry UI with numpad
+        ├── CreatePinViewModel.kt       # PIN entry, confirm, validation logic
+        ├── CreatePinUiState.kt         # Data class (pin, confirmPin, step, errors)
+        └── CreatePinNavigationEvent.kt # Sealed interface for nav events
 
 app/src/main/res/
 ├── values/strings.xml                  # Indonesian (default locale)
@@ -118,8 +124,10 @@ app/src/test/java/com/qlosir/app/ui/
 │   └── SplashViewModelTest.kt          # Splash navigation logic tests (MockK)
 ├── register/
 │   └── RegisterViewModelTest.kt        # Register form validation + navigation tests
-└── login/
-    └── LoginViewModelTest.kt           # Login validation + navigation tests
+├── login/
+│   └── LoginViewModelTest.kt           # Login validation + navigation tests
+└── createpin/
+    └── CreatePinViewModelTest.kt       # PIN entry, confirm, mismatch, navigation tests
 ```
 
 ---

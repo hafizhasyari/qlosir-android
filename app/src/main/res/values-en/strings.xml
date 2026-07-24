@@ -64,4 +64,12 @@
     <string name="login_register">Register</string>
     <string name="login_error_phone_required">Phone number is required</string>
     <string name="login_error_password_required">Password is required</string>
+
+    <!-- Create PIN Screen -->
+    <string name="create_pin_title">Create Security PIN</string>
+    <string name="create_pin_subtitle">Enter a 6-digit PIN for verification each time you log in.</string>
+    <string name="create_pin_confirm_title">Confirm PIN</string>
+    <string name="create_pin_confirm_subtitle">Re-enter your 6-digit PIN to confirm.</string>
+    <string name="create_pin_error_mismatch">PIN does not match. Please try again.</string>
+    <string name="create_pin_back_button">Back</string>
 </resources>

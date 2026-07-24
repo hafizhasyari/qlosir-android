@@ -81,7 +81,7 @@ class RegisterViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             // Submit logic / API call would take place here
-            _navigationEvent.emit(RegisterNavigationEvent.NavigateToLogin)
+            _navigationEvent.emit(RegisterNavigationEvent.NavigateToDashboard)
         }
     }
 }
