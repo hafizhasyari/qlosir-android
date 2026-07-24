@@ -424,6 +424,52 @@ feat: add store registration screen with form validation
 
 ---
 
+## Design Reference (Source of Truth)
+
+The canonical UI/UX design for all screens lives in:
+
+```
+design-reference/qlosir-native-android-app-design/
+├── README.md                           # Read this first — handoff instructions
+├── project/
+│   ├── Qlosir Onboarding.dc.html      # All screens: Splash, Onboarding, Login, Register, PIN, Dashboard, POS, Stock, Kasbon, Reports, Settings
+│   ├── Qlosir Prototype.dc.html       # Interactive prototype flows
+│   ├── support.js                      # Runtime support (not relevant for implementation)
+│   ├── assets/
+│   │   └── qlosir-app-icon.png        # App icon asset
+│   └── uploads/
+│       └── PRD.md                      # Product Requirements Document
+```
+
+### How to use
+
+1. **Read the HTML source directly** — dimensions, colors, spacing, font sizes, and layout rules are all specified in inline CSS. Do NOT render in a browser or take screenshots.
+2. **Match pixel-perfectly** — recreate the visual output in Jetpack Compose using the project's existing theme tokens and design system.
+3. **Design > code when in conflict** — if current code deviates from the design spec, the design is correct and code should be updated.
+
+### Key design patterns from the spec
+
+| Pattern | Design Spec | Compose Implementation |
+|---------|------------|----------------------|
+| Floating label (input fields) | `position:absolute; top:-8px; left:12px; background:#fff; padding:0 6px; font-size:12px` | `Modifier.align(TopStart).offset(x=12.dp, y=(-8).dp).background(White).padding(horizontal=6.dp)`, Text 12.sp |
+| Input border (unfocused) | `border:1.6px solid #D7E0EE; border-radius:13px; padding:15px 14px` | `border(1.6.dp, Color(0xFFD7E0EE), RoundedCornerShape(13.dp))`, padding 14.dp horizontal, 15.dp vertical |
+| Input border (focused) | `border:1.6px solid #1B62E0` | `border(1.6.dp, BrandPrimaryBlue, RoundedCornerShape(13.dp))` |
+| Primary button | `background:#1B62E0; border-radius:16px; padding:17px; font-size:16px; font-weight:700; box-shadow:0 10px 22px rgba(27,98,224,.32)` | `RoundedCornerShape(16.dp)`, BrandPrimaryBlue, shadow 10.dp, padding 17.dp vertical |
+| Page indicator (active) | `width:26px; height:8px; border-radius:999px; background:#1B62E0` | Capsule shape 26x8dp, BrandPrimaryBlue |
+| Page indicator (inactive) | `width:8px; height:8px; border-radius:999px; background:#CBD7E8` | Circle 8x8dp, Color(0xFFCBD7E8) |
+| Section title | `font-size:26px; font-weight:800; color:#12203A; letter-spacing:-.5px; line-height:1.2` | 26.sp, ExtraBold, DarkPrimaryText, letterSpacing (-0.5).sp |
+| Subtitle/description | `font-size:15px; font-weight:500; color:#5A6B84; line-height:1.55` | 15.sp, Medium, TextSecondary, lineHeight ~23.sp |
+| Outer Box top padding for label | `margin-top:20px` (between fields) / `margin-top:22px` (first field) | `padding(top = 8.dp)` on outer Box + `Spacer(16-20.dp)` between fields |
+
+### When implementing a new screen
+
+1. Open `design-reference/qlosir-native-android-app-design/project/Qlosir Onboarding.dc.html`
+2. Find the screen frame matching your task (each `376x806px` div is a phone screen)
+3. Extract colors, spacing, font-sizes, and layout from the inline CSS
+4. Map to existing theme tokens where possible; only add new tokens to `Color.kt` / `Type.kt` if the design introduces genuinely new values
+
+---
+
 ## Do's and Don'ts
 
 ### ✅ Do
